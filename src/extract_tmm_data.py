@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 
 import requests
@@ -20,6 +21,8 @@ def download_project_aoi(project_id):
     """
     url = 'https://tasks.hotosm.org/api/v1/project/' + str(project_id) + '/aoi'
     r = requests.get(url, headers=get_json_request_header())
+    print(f'Perimeter for {project_id} downloaded')
+    logging.info(f'Perimeter for {project_id} downloaded')
     return r.json()
 
 
@@ -31,12 +34,14 @@ class TmmProjectDatabase:
         os.makedirs(os.path.join('data', 'tmm'), exist_ok=True)
         self.data_file_path = os.path.join('data', 'tmm', str(project_id) + '.json')
         if os.path.exists(self.data_file_path):
+            logging.info(f'Perimeter for {project_id} already downloaded')
             with open(self.data_file_path) as f:
                 self.project_aoi = json.load(f)
         else:
             self.project_aoi = download_project_aoi(project_id)
             with open(self.data_file_path, 'w') as outfile:
                 json.dump(self.project_aoi, outfile)
+            logging.info(f'Perimeter for {project_id} stored in {self.data_file_path}')
 
     def get_perimeter_bbox(self):
         coordinates = self.project_aoi['coordinates']
@@ -56,6 +61,10 @@ class TmmProjectDatabase:
             if point[1] > max_lon:
                 max_lon = point[1]
         return min_lat, min_lon, max_lat, max_lon
+
+    def print_perimeter_bbox(self):
+        min_lat, min_lon, max_lat, max_lon = self.get_perimeter_bbox()
+        print(str(min_lat) + ', ' + str(min_lon) + ', ' + str(max_lat) + ', ' + str(max_lon))
 
     def export_perimeter(self, filename):
         with open(filename, 'w') as outfile:

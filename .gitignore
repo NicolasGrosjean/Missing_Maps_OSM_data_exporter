@@ -4,3 +4,5 @@
 *.spec
 *.log
 data/
+build/
+dist/

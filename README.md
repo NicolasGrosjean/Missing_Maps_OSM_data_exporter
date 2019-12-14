@@ -1,19 +1,31 @@
 # Missing Maps OSM data exporter
 > Tool to export OSM data for Missing Maps projects
 
-## Installation
+### Basic Installation
 
-Download or clone this repository.
+#### Windows
 
-### Python
+- Download the archive (COMING SOON)
+- Extract the archive
+
+#### Linux/Mac
+
+See contributor installation section
+
+### Contributor Installation
+
+If you want contribute to the project or if the basic installation fails,
+this section is for you.
+
 I recommend you to install a Python environment with conda or virtualenv.
 
+##### Conda
 For example with conda, 
 [download and install miniconda](https://docs.conda.io/en/latest/miniconda.html)
 
 Create a conda environment
 ```
-conda create -n mm_osm python=3.7
+conda create -n mm_osm python=3.7.1
 ```
 
 Activate the conda environment
@@ -26,16 +38,65 @@ Install the packages with the following commands
 conda install geojson requests
 ```
 
+##### Optionnal
+
+If you want release your development, you can use the Pyinstaller package.
+
+````
+pip install pyinstaller
+````
+
+To release, run the following command
+````
+pyinstaller src/console_gui.py -F
+````
+
 ## Usage
 
-Activate the conda environment
+#### With basic installation
+
+Double-click on *run.bat*
+
+A console opened and asks you a Hot tasking manager project ID
+
+![Console GUI at start](doc/console_gui.png)
+
+Type 4416 and Enter for example.
+
+At the end of the processing you will something like this
+
+![Console GUI at end](doc/console_gui_2.png)
+
+Copy-paste somewhere the bounding box of the project.
+
+In case the console is closed before you copy-pasted it,
+you can restart the instructions of this section.
+
+To close the console, as printed, pressed a key in the keyboard.
+
+In the directory of your installation, you will see new elements :
+* info.log : logs about the application. Send to us in case of issues.
+* data : the directory containing all the download data.
+In particular for each project you have asked there is a subdirectory with all
+the related data (the perimeter for example).
+
+![Files in the installation directory](doc/console_gui_files.png)
+
+#### With contributor installation
+
+Activate the conda environment if you have installed with it
 ```
 activate mm_osm
 ```
 
-TODO
+Run the following script
+```
+python src/console_gui.py
+```
 
-## Tests
+The rest is the same as the previous section.
+
+## Tests (with contributor installation)
 
 Go to the tests directory and run unittest
 ```

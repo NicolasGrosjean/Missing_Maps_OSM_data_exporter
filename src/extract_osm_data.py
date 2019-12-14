@@ -4,9 +4,6 @@ from time import gmtime, strftime
 
 import src.overpass
 
-logging.basicConfig(filename='info.log', level=logging.INFO, format='%(asctime)s %(message)s',
-                    datefmt='%d/%m/%Y %H:%M:%S')
-
 
 def extract_osm_data(expression, bbox, filename):
     """
