@@ -5,7 +5,7 @@
 
 #### Windows
 
-- Download the archive (COMING SOON)
+- [Download the archive](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/releases/download/v1.0.0/Missing_map_osm_data_exporter_1_0_0.zip)
 - Extract the archive
 
 #### Linux/Mac
@@ -81,6 +81,9 @@ In particular for each project you have asked there is a subdirectory with all
 the related data (the perimeter for example).
 
 ![Files in the installation directory](doc/console_gui_files.png)
+
+**To use the bounding box and/or the perimeter to download related OSM data,
+see [this tutorial](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/wiki/Download-OSM-data-of-a-Missing-Maps-project).**
 
 #### With contributor installation
 
