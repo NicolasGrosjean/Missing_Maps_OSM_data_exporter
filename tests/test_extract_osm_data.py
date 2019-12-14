@@ -1,4 +1,5 @@
 import os
+import shutil
 import unittest
 import xml.etree.ElementTree as ET
 
@@ -11,8 +12,7 @@ from src.extract_osm_data import extract_osm_data
 class TestExtractOsmData(unittest.TestCase):
     def setUp(self):
         # Clean all previous export before test
-        for file in os.listdir('data'):
-            os.remove(os.path.join('data', file))
+        shutil.rmtree('data')
 
     def test_building_simple(self):
         # Extract building near CartONG

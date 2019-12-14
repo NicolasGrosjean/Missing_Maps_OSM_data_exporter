@@ -1,7 +1,8 @@
 import logging
 import os
-import overpass
 from time import gmtime, strftime
+
+import src.overpass
 
 logging.basicConfig(filename='info.log', level=logging.INFO, format='%(asctime)s %(message)s',
                     datefmt='%d/%m/%Y %H:%M:%S')
@@ -24,7 +25,7 @@ def extract_osm_data(expression, bbox, filename):
     query += ');(._;>;);'
 
     logging.info(f'Call Overpass to extract data for expression {expression}')
-    api = overpass.API(endpoint='http://overpass-api.de/api/interpreter')
+    api = src.overpass.API(endpoint='http://overpass-api.de/api/interpreter')
     response = api.get(query, verbosity='body', responseformat='xml')
     with open(os.path.join('data', output_filename), 'w', encoding='UTF-8') as outfile:
         outfile.write(response)
