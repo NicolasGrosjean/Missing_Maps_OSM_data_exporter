@@ -1,0 +1,5 @@
+building,polygon
+highway,line
+landuse,polygon
+natural
+water
