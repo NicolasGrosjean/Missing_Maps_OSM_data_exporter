@@ -24,22 +24,23 @@ def get_last_available_ohsome_date():
     return test_time.strftime('%Y-%m-%d')
 
 
-def download_ohsome_data(output_filename, bbox, start_time, tag, tag_type=None):
+def download_ohsome_data(output_filename, bbox, start_time, end_time, tag, tag_type=None):
     """
     Download data for the ohsome API
     :param output_filename: The name (and path) of the file in which the downloaded result will be saved
     :param bbox: Bounding box of the download area
     :param start_time: Start time of the full history OSM (format %Y-%m-%d)
+    :param end_time: End time of the full history OSM (format %Y-%m-%d)
     :param tag: OSM tag on which data are filtered
     :param tag_type: OSM type 'node', 'way' or ‘relation’ OR geometry 'point', 'line' or 'polygon’; default: all 3 OSM types
     :return:
     """
     url = 'http://api.ohsome.org/v0.9/elementsFullHistory/geometry?bboxes=' + bbox +\
-          '&keys=' + tag + '&properties=tags&showMetadata=false&time=' + start_time + ',' +\
-          get_last_available_ohsome_date()
+          '&keys=' + tag + '&properties=tags&showMetadata=false&time=' + start_time + ',' + end_time
     if tag_type is not None:
         url += '&types=' + tag_type
     logging.info(f'Ohsome API query : {url}')
+    print(f'Extract {tag} data between {start_time} and {end_time}')
     r = requests.get(url, headers=get_json_request_header())
     with open(output_filename, 'w') as outfile:
         json.dump(r.json(), outfile)

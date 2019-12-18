@@ -12,13 +12,13 @@ def get_bbox():
     project_id = 5654
     db = TmmProjectDatabase(project_id)
     os.makedirs(os.path.join('data', str(project_id)), exist_ok=True)
-    #db.export_perimeter(os.path.join('data', str(project_id), 'perimeter.json'))
     bbox = db.get_perimeter_bbox()
     return bbox
 
 
 class TestExtractTmmData(unittest.TestCase):
     def setUp(self):
+        os.makedirs('data', exist_ok=True)
         # Clean all previous export before test
         shutil.rmtree('data')
 
