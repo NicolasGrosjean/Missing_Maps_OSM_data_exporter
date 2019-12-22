@@ -5,7 +5,7 @@
 
 #### Windows
 
-- [Download the archive](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/releases/download/v1.0.0/Missing_map_osm_data_exporter_1_0_0.zip)
+- [Download the archive](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/releases/download/v1.1.0/Missing_map_osm_data_exporter_Windows_1_1_0.zip)
 - Extract the archive
 
 #### Linux/Mac
@@ -57,20 +57,32 @@ pyinstaller src/console_gui.py -F
 
 Double-click on *run.bat*
 
-A console opened and asks you a Hot tasking manager project ID
+A console opens, follow the instructions
+* Gives a [HOT tasking manager project ID](https://tasks.hotosm.org/contribute), type it and press Enter
+* The console tells you if the data are downloaded or previous downloaded will be used
+* The console show you the name of the project.
+In case you have done a mistake in the project id, tou can do Ctrl+C to leave the console
+* The console asks you the ISO-3 code of the country to use it in file names.
+For Kenya it is KEN.
+You can find it in [this website](https://fr.actualitix.com/blog/annexes/code-iso-2-et-iso-3-des-pays.php) for example.
+* The console asks you the localisation to also put it in file names.
+You can use come information from the name of the project already displayed.
+It is better to use dash (-) instead of spaces between words.
+* The console gives you the bounding box of the project and you have now a perimeter file of the project
+* The console asks you if you want in addition an extraction of the historical OSM data between
+the beginning of the project and the latest date (generally 40 days ago).
+This extraction is configurable (see lower).
+If you want it, type *y* and press Enter. Otherwise simply press Enter (*N* for no is the default choice)
+* The console shows you informations on the current downloading task
 
-![Console GUI at start](doc/console_gui.png)
+At the end of the processing you will have something like this
 
-Type 4416 and Enter for example.
-
-At the end of the processing you will something like this
-
-![Console GUI at end](doc/console_gui_2.png)
+![Console GUI at end](doc/console_gui.png)
 
 Copy-paste somewhere the bounding box of the project.
 
 In case the console is closed before you copy-pasted it,
-you can restart the instructions of this section.
+you can restart the instructions of this section to get it again.
 
 To close the console, as printed, pressed a key in the keyboard.
 
@@ -83,7 +95,13 @@ the related data (the perimeter for example).
 ![Files in the installation directory](doc/console_gui_files.png)
 
 **To use the bounding box and/or the perimeter to download related OSM data,
-see [this tutorial](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/wiki/Download-OSM-data-of-a-Missing-Maps-project).**
+see [this tutorial](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/wiki/Download-current-OSM-data-of-a-Missing-Maps-project).**
+
+To change the downloaded OSM historical data, you can modify *osm_full_history_config.txt* file with a text editor.
+Each line contains the tag (EX: building) and the geometry wanted (EX: polygon).
+The geometry is optional, you can put nothing to have all geometries.
+
+**To use the downloaded OSM historical data, see [this tutorial](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/wiki/Use-historical-OSM-data-of-a-Missing-Maps-project)**
 
 #### With contributor installation
 
@@ -110,4 +128,4 @@ python -m unittest discover
 ## Licence
 
 The project have an Apache-2.0 licence because of the inclusion of
-[overpass](https://github.com/mvexel/overpass-api-python-wrapper) which has this licence.
+[overpass python library](https://github.com/mvexel/overpass-api-python-wrapper) which has this licence.
