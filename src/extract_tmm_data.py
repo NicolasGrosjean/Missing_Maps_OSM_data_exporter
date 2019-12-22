@@ -48,6 +48,9 @@ class TmmProjectDatabase:
     def get_project_id(self):
         return self.project_id
 
+    def get_project_name(self):
+        return self.project_data['projectInfo']['name']
+
     def get_perimeter_bbox(self):
         return self.project_data['aoiBBOX'][0], self.project_data['aoiBBOX'][1], self.project_data['aoiBBOX'][2], self.project_data['aoiBBOX'][3]
 
