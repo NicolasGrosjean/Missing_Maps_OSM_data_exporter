@@ -38,6 +38,12 @@ Install the packages with the following commands
 conda install geojson requests
 ```
 
+If the installation fails you can pass by pip
+```
+pip install geojson
+pip install requests
+```
+
 ##### Optionnal
 
 If you want release your development, you can use the Pyinstaller package.
@@ -53,7 +59,7 @@ pyinstaller src/console_gui.py -F
 
 ## Usage
 
-#### With basic installation
+### With basic installation
 
 Double-click on *run.bat*
 
@@ -103,7 +109,7 @@ The geometry is optional, you can put nothing to have all geometries.
 
 **To use the downloaded OSM historical data, see [this tutorial](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/wiki/Use-historical-OSM-data-of-a-Missing-Maps-project)**
 
-#### With contributor installation
+### With contributor installation
 
 Activate the conda environment if you have installed with it
 ```
