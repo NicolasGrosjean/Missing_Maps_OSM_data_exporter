@@ -1,6 +1,6 @@
 building,polygon
 highway,line
 landuse,polygon
-natural
-waterway
-amenity
+natural,
+waterway,
+amenity,

@@ -14,7 +14,7 @@ class TestConsoleGui(unittest.TestCase):
         self.assertEqual(config[2]['tag_type'], 'polygon')
         self.assertEqual(config[3]['tag'], 'natural')
         self.assertIsNone(config[3]['tag_type'])
-        self.assertEqual(config[4]['tag'], 'water')
+        self.assertEqual(config[4]['tag'], 'waterway')
         self.assertIsNone(config[4]['tag_type'])
 
 

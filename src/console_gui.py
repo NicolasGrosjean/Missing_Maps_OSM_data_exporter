@@ -29,7 +29,7 @@ def read_osm_full_history_config():
         if line.replace(' ', '').replace('\n', '') != '':
             split_line = line.split(',')
             config.append({'tag': split_line[0].replace('\n', ''),
-                           'tag_type': split_line[1].replace('\n', '') if len(split_line) > 1 else None})
+                           'tag_type': split_line[1].replace('\n', '') if len(split_line) > 1 and split_line[1].replace('\n', '') != '' else None})
     return config
 
 
