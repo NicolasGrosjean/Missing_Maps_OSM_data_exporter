@@ -5,12 +5,20 @@
 
 #### Windows
 
-- [Download the archive](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/releases/download/v1.1.0/Missing_map_osm_data_exporter_Windows_1_1_0.zip)
+- [Download the archive for the Windows version](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/releases/download/v1.1.0/Missing_map_osm_data_exporter_Windows_1_1_0.zip)
 - Extract the archive
 
-#### Linux/Mac
+*Tested on Windows 10*
 
-See contributor installation section
+#### Linux
+
+- [Download the archive for the Linux version](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/releases/download/v1.1.0/Missing_Maps_OSM_data_exporter_1_1_0_Linux.zip)
+- Extract the archive
+
+*Tested on Ubuntu 18_04 LTS*
+
+#### Mac
+Try the Linux installation, otherwise try the contributor installation.
 
 ### Contributor Installation
 
@@ -61,9 +69,14 @@ pyinstaller src/console_gui.py -F
 
 ### With basic installation
 
-Double-click on *run.bat*
+**Windows** : Double-click on *run.bat*.
+A console opens, follow the instructions written after the Linux description.
 
-A console opens, follow the instructions
+**Linux** : Open a terminal in the installed directory.
+Run the command ```./Missing_Maps_exporter```
+
+**Both** :
+
 * Gives a [HOT tasking manager project ID](https://tasks.hotosm.org/contribute), type it and press Enter
 * The console tells you if the data are downloaded or previous downloaded will be used
 * The console show you the name of the project.
