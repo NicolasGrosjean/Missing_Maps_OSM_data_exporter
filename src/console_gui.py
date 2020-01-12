@@ -1,3 +1,4 @@
+import datetime
 import logging
 import os
 
@@ -33,17 +34,46 @@ def read_osm_full_history_config():
     return config
 
 
+def check_date_format(date):
+    splitted_date = date.split('-')
+    if len(splitted_date) != 3:
+        return False
+    try:
+        formatted_date = datetime.datetime.strptime(date, '%Y-%m-%d')
+        if formatted_date > datetime.datetime.now():
+            return False
+        if int(splitted_date[0]) > 3000 or int(splitted_date[0]) < 2010:
+            return False
+        if int(splitted_date[1]) > 12 or int(splitted_date[1]) < 0:
+            return False
+    except ValueError:
+        return False
+    return True
+
+
 def export_historical_osm_data(db, config, iso3, localisation):
     project_id = db.get_project_id()
     bbox = db.get_perimeter_bbox_as_string()
     start_time = db.get_creation_date()
+    print(f'The start time of the project is {start_time}')
+    user_start_time = input(f'Start time of the data extraction [default {start_time}]: ')
+    if not check_date_format(user_start_time):
+        user_start_time = start_time
+    latest_update = db.get_latest_update_date()
+    print(f'The date of the latest update of the project is {latest_update}')
     end_time = get_last_available_ohsome_date()
+    print(f'The date of the latest available data is {end_time}')
+    user_end_time = input(f'End time of the data extraction [default {end_time}]: ')
+    if not check_date_format(user_end_time) or \
+            datetime.datetime.strptime(user_end_time, '%Y-%m-%d') > datetime.datetime.strptime(end_time, '%Y-%m-%d') or \
+            datetime.datetime.strptime(user_end_time, '%Y-%m-%d') < datetime.datetime.strptime(user_start_time, '%Y-%m-%d'):
+        user_end_time = end_time
     for obj in config:
         tag = obj['tag']
         tag_and_type = tag + '_' + obj['tag_type'][0] if obj['tag_type'] is not None else tag
-        filename = iso3 + '_' + localisation + '_' + tag_and_type + '_osm_' + start_time + '_' + end_time + '.geojson'
+        filename = iso3 + '_' + localisation + '_' + tag_and_type + '_osm_' + user_start_time + '_' + user_end_time + '.geojson'
         output_filename = os.path.join('data', str(project_id), filename)
-        download_ohsome_data(output_filename, bbox, start_time, end_time, tag, tag_type=None)
+        download_ohsome_data(output_filename, bbox, user_start_time, user_end_time, tag, tag_type=None)
 
 
 if __name__ == '__main__':

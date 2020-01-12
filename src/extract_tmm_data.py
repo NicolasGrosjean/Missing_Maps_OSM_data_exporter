@@ -64,3 +64,7 @@ class TmmProjectDatabase:
 
     def get_creation_date(self, date_format='%Y-%m-%d'):
         return datetime.datetime.strptime(self.project_data['created'], '%Y-%m-%dT%H:%M:%S.%f').strftime(date_format)
+
+    def get_latest_update_date(self, date_format='%Y-%m-%d'):
+        #TODO Improve it by putting the latest validation date
+        return datetime.datetime.strptime(self.project_data['lastUpdated'], '%Y-%m-%dT%H:%M:%S.%f').strftime(date_format)
