@@ -53,7 +53,20 @@ def check_date_format(date):
 
 def export_historical_osm_data(db, config, iso3, localisation):
     project_id = db.get_project_id()
-    bbox = db.get_perimeter_bbox_as_string()
+    poly = input('Do you want download data for the exact perimeter (otherwise a bounding box) [y/N] :')
+    if poly == 'y':
+        polygons = ''
+        for polygon in db.get_perimeter_poly()['coordinates']:
+            if polygons != '':
+                polygons += '|'
+            polygons += str(polygon).replace('[', '').replace(']', '').replace(' ', '')
+        area = 'bpolys=' + polygons
+    else :
+        bbox = db.get_perimeter_bbox_as_string()
+        print(f'The bounding box of the project is {bbox}')
+        #increase_percent = input('Which percentage do you want increase the bounding box [0 to do not increase] : ')
+        # TODO
+        area = 'bboxes=' + db.get_perimeter_bbox_as_string()
     start_time = db.get_creation_date()
     print(f'The start time of the project is {start_time}')
     user_start_time = input(f'Start time of the data extraction [default {start_time}]: ')
@@ -73,7 +86,7 @@ def export_historical_osm_data(db, config, iso3, localisation):
         tag_and_type = tag + '_' + obj['tag_type'][0] if obj['tag_type'] is not None else tag
         filename = iso3 + '_' + localisation + '_' + tag_and_type + '_osm_' + user_start_time + '_' + user_end_time + '.geojson'
         output_filename = os.path.join('data', str(project_id), filename)
-        download_ohsome_data(output_filename, bbox, user_start_time, user_end_time, tag, tag_type=None)
+        download_ohsome_data(output_filename, area, user_start_time, user_end_time, tag, tag_type=None)
 
 
 if __name__ == '__main__':

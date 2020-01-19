@@ -58,6 +58,9 @@ class TmmProjectDatabase:
         min_lat, min_lon, max_lat, max_lon = self.get_perimeter_bbox()
         return str(min_lat) + ', ' + str(min_lon) + ', ' + str(max_lat) + ', ' + str(max_lon)
 
+    def get_perimeter_poly(self):
+        return self.project_data['areaOfInterest']
+
     def export_perimeter(self, filename):
         with open(filename, 'w') as outfile:
             json.dump(self.project_data['areaOfInterest'], outfile)
