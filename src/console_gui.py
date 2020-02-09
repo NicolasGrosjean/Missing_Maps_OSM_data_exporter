@@ -62,11 +62,16 @@ def export_historical_osm_data(db, config, iso3, localisation):
             polygons += str(polygon).replace('[', '').replace(']', '').replace(' ', '')
         area = 'bpolys=' + polygons
     else :
-        bbox = db.get_perimeter_bbox_as_string()
-        print(f'The bounding box of the project is {bbox}')
-        #increase_percent = input('Which percentage do you want increase the bounding box [0 to do not increase] : ')
-        # TODO
-        area = 'bboxes=' + db.get_perimeter_bbox_as_string()
+        bbox_str = db.get_perimeter_bbox_as_string()
+        print(f'The bounding box of the project is {bbox_str}')
+        extension_percent = input('Which percentage do you want increase the surface of the bounding box [0 to do not increase] : ')
+        try:
+            extension_percent = int(extension_percent)
+            bbox_str = db.get_extended_perimeter_bbox_as_string(extension_percent)
+            print(f'The extended bounding box is {bbox_str}')
+        except Exception as e:
+            print('Error when extending bounding box. Have you entered an integer like 20 for 20% ?')
+        area = 'bboxes=' + bbox_str
     start_time = db.get_creation_date()
     print(f'The start time of the project is {start_time}')
     user_start_time = input(f'Start time of the data extraction [default {start_time}]: ')

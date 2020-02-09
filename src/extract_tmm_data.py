@@ -55,8 +55,10 @@ class TmmProjectDatabase:
         return self.project_data['aoiBBOX'][0], self.project_data['aoiBBOX'][1], self.project_data['aoiBBOX'][2], self.project_data['aoiBBOX'][3]
 
     def get_perimeter_bbox_as_string(self):
-        min_lat, min_lon, max_lat, max_lon = self.get_perimeter_bbox()
-        return str(min_lat) + ', ' + str(min_lon) + ', ' + str(max_lat) + ', ' + str(max_lon)
+        return bounding_box_to_str(self.get_perimeter_bbox())
+
+    def get_extended_perimeter_bbox_as_string(self, extension_percent):
+        return bounding_box_to_str(extend_bounding_box(self.get_perimeter_bbox(), extension_percent))
 
     def get_perimeter_poly(self):
         return self.project_data['areaOfInterest']
@@ -71,3 +73,19 @@ class TmmProjectDatabase:
     def get_latest_update_date(self, date_format='%Y-%m-%d'):
         #TODO Improve it by putting the latest validation date
         return datetime.datetime.strptime(self.project_data['lastUpdated'], '%Y-%m-%dT%H:%M:%S.%f').strftime(date_format)
+
+
+def bounding_box_to_str(bbox):
+    min_lat, min_lon, max_lat, max_lon = bbox
+    return str(min_lat) + ', ' + str(min_lon) + ', ' + str(max_lat) + ', ' + str(max_lon)
+
+
+def extend_bounding_box(bbox, extension_percent):
+    import math
+    min_lat, min_lon, max_lat, max_lon = bbox
+    factor = math.sqrt(1 + extension_percent/100)
+    min_lat -= (factor - 1) * (max_lat - min_lat) / 2
+    min_lon -= (factor - 1) * (max_lon - min_lon) / 2
+    max_lat += (factor - 1) * (max_lat - min_lat) / 2
+    max_lon += (factor - 1) * (max_lon - min_lon) / 2
+    return min_lat, min_lon, max_lat, max_lon
