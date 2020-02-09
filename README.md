@@ -5,13 +5,14 @@
 
 #### Windows
 
-- [Download the archive for the Windows version](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/releases/download/v1.1.0/Missing_map_osm_data_exporter_Windows_1_1_0.zip)
+- [Download the archive for the Windows version](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/releases/download/v1.2.0/Missing_Map_osm_data_exporter_1_2_0_Windows.zip)
 - Extract the archive
 
 *Tested on Windows 10*
 
 #### Linux
 
+*WARNING : The Linux version is the 1.1.0, it will be updated soon.*
 - [Download the archive for the Linux version](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/releases/download/v1.1.0/Missing_Maps_OSM_data_exporter_1_1_0_Linux.zip)
 - Extract the archive
 
