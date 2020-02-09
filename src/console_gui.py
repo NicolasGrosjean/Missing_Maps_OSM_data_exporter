@@ -61,7 +61,7 @@ def export_historical_osm_data(db, config, iso3, localisation):
                 polygons += '|'
             polygons += str(polygon).replace('[', '').replace(']', '').replace(' ', '')
         area = 'bpolys=' + polygons
-    else :
+    else:
         bbox_str = db.get_perimeter_bbox_as_string()
         print(f'The bounding box of the project is {bbox_str}')
         extension_percent = input('Which percentage do you want increase the surface of the bounding box [0 to do not increase] : ')

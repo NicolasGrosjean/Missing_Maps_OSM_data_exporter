@@ -92,7 +92,20 @@ It is better to use dash (-) instead of spaces between words.
 the beginning of the project and the latest date (generally 40 days ago).
 This extraction is configurable (see lower).
 If you want it, type *y* and press Enter. Otherwise simply press Enter (*N* for no is the default choice)
-* The console shows you informations on the current downloading task
+* The console asks you if you want extract data info the exact perimeter (useful for stats)
+or if you want to extract data according a bounding box (to have more map context).
+Press *y* for exact perimeter, another thing (for example *N*) for bounding box
+* If you choose the bounding box, the console asks you  if you want increase the
+bounding box by a percent of its surface to have more context.
+For example type *20* to increase the surface of 20% or 0 to do not increase.
+* The console asks you the beginning date of the extraction.
+The default date is the creation date of the project. If you want it simply press Enter.
+Otherwise, type a date respecting the same format *YYYY-MM-DD*
+* The console shows you the date of the latest edit on the project and the latest date available with ohsome.
+The console asks you the end date of the extraction.
+The default date is the latest date available with ohsome. If you want it simply press Enter.
+Otherwise, type a date respecting the same format *YYYY-MM-DD*
+* The console shows you feedback on the current downloading task
 
 At the end of the processing you will have something like this
 
