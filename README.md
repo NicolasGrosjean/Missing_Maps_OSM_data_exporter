@@ -12,8 +12,7 @@
 
 #### Linux
 
-*WARNING : The Linux version is the 1.1.0, it will be updated soon.*
-- [Download the archive for the Linux version](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/releases/download/v1.1.0/Missing_Maps_OSM_data_exporter_1_1_0_Linux.zip)
+- [Download the archive for the Linux version](https://github.com/NicolasGrosjean/Missing_Maps_OSM_data_exporter/releases/download/v1.2.0/Missing_Maps_osm_data_exporter_1_2_0_Linux.zip)
 - Extract the archive
 
 *Tested on Ubuntu 18_04 LTS*
