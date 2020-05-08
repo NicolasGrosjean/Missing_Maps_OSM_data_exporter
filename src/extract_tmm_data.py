@@ -68,11 +68,19 @@ class TmmProjectDatabase:
             json.dump(self.project_data['areaOfInterest'], outfile)
 
     def get_creation_date(self, date_format='%Y-%m-%d'):
-        return datetime.datetime.strptime(self.project_data['created'], '%Y-%m-%dT%H:%M:%S.%f').strftime(date_format)
+        try:
+            creation_datetime = datetime.datetime.strptime(self.project_data['created'], '%Y-%m-%dT%H:%M:%S.%f')
+        except ValueError:
+            creation_datetime = datetime.datetime.strptime(self.project_data['created'], '%Y-%m-%dT%H:%M:%S.%fZ')
+        return creation_datetime.strftime(date_format)
 
     def get_latest_update_date(self, date_format='%Y-%m-%d'):
         #TODO Improve it by putting the latest validation date
-        return datetime.datetime.strptime(self.project_data['lastUpdated'], '%Y-%m-%dT%H:%M:%S.%f').strftime(date_format)
+        try:
+            latest_update_datetime = datetime.datetime.strptime(self.project_data['lastUpdated'], '%Y-%m-%dT%H:%M:%S.%f')
+        except ValueError:
+            latest_update_datetime = datetime.datetime.strptime(self.project_data['lastUpdated'], '%Y-%m-%dT%H:%M:%S.%fZ')
+        return latest_update_datetime.strftime(date_format)
 
 
 def bounding_box_to_str(bbox):
