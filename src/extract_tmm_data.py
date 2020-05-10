@@ -20,7 +20,7 @@ def download_project_data(project_id):
     :param project_id:
     :return:
     """
-    url = 'https://tasks.hotosm.org/api/v1/project/' + str(project_id)
+    url = 'https://tasking-manager-tm4-production-api.hotosm.org/api/v2/projects/' + str(project_id)
     r = requests.get(url, headers=get_json_request_header())
     print(f'Tasking Manager data for project {project_id} downloaded')
     logging.info(f'Tasking Manager data for {project_id} downloaded')
