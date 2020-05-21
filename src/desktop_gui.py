@@ -42,7 +42,7 @@ class MainDialog(Tk):
         #########################
         row += 1
         file_name_label_frame = Labelframe(self, text='File name information')
-        file_name_label_frame.grid(sticky='WE', columnspan=2, padx=5, pady=5, ipadx=5, ipady=5)
+        file_name_label_frame.grid(sticky='WE', columnspan=100, padx=5, pady=5, ipadx=5, ipady=5)
 
         row += 1
         self.iso3 = StringVar()
@@ -52,7 +52,7 @@ class MainDialog(Tk):
         row += 1
         self.localisation = StringVar()
         Label(file_name_label_frame, text='Localisation (EX: city or camp name) : ').grid(column=0, row=row, sticky=W, padx=10, pady=3)
-        Entry(file_name_label_frame, width=7, textvariable=self.localisation).grid(column=1, row=row, sticky=(W, E), padx=10, pady=3)
+        Entry(file_name_label_frame, width=30, textvariable=self.localisation).grid(column=1, columnspan=99, row=row, sticky=(W, E), padx=10, pady=3)
 
         ###################
         # Extraction size #
