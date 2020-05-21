@@ -99,7 +99,7 @@ class MainDialog(Tk):
         Label(date_label_frame, textvariable=self.project_end_date).grid(column=1, row=row, sticky=(W, E), padx=10, pady=3)
 
         row += 1
-        ohsome_end_date = StringVar()# TODO value=get_last_available_ohsome_date())
+        ohsome_end_date = StringVar(value=get_last_available_ohsome_date())
         Label(date_label_frame, text='Ohsome latest available date : ').grid(column=0, row=row, sticky=W, padx=10, pady=3)
         Label(date_label_frame, textvariable=ohsome_end_date).grid(column=1, row=row, sticky=(W, E), padx=10, pady=3)
 
